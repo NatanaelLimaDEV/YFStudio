@@ -1,42 +1,62 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.centro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100dvh;
+  width: 100%;
+}
+
+.bv-txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 20px;
+
+  gap: 20px;
+}
+
+.bv-txt > h1 {
+  font-family: "PT Sans Caption", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+
+  color: #ffb4b1;
+}
+
+.bv-txt > p {
+  font-family: "PT Sans Caption", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  max-width: 700px;
   text-align: center;
+
+  color: #fff;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.bt-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  gap: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media screen and (min-width: 480px) {
+  .bv-txt > h1 {
+		font-size: 30px;
+	}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media screen and (min-width: 768px) {
+	.bv-txt > h1 {
+		font-size: 50px;
+	}
 }
