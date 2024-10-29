@@ -1,4 +1,5 @@
 import "./App.css";
+import Button from "./componentes/button";
 import Nav from "./componentes/nav";
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <>
       <div className="centro">
         <Nav />
-        {/* <div className="bv-txt">
+        <div className="bv-txt">
           <h1>Bem-vinda ao nosso estúdio!</h1>
           <p>
             Onde suas mãos recebem o cuidado e a elegância que merecem!
@@ -16,7 +17,7 @@ function App() {
           </p>
           <Button />
         </div>
-        <div className="bt-bottom">
+        {/* <div className="bt-bottom">
           <ButtonContato text={<FaInstagram className="icon" />} />
           <ButtonContato text={<FaWhatsapp className="icon" />} />
           <ButtonContato text={<FaRegMap className="icon" />} />
