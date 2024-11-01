@@ -1,12 +1,24 @@
 import "./App.css";
 import Button from "./componentes/button";
+import ButtonHorario from "./componentes/button-dia";
+import Form from "./componentes/form";
 import Nav from "./componentes/nav";
+import React, { useState } from "react";
 
-import { FaInstagram, FaRegMap, FaWhatsapp } from "react-icons/fa6";
+import { FaInstagram, FaRegMap, FaWhatsapp, FaX } from "react-icons/fa6";
 
 function App() {
+  const [janelaUp, janelaDisplay] = useState(false);
+  const MudarDisplay = () => {
+    janelaDisplay(!janelaUp);
+  };
+
   return (
     <>
+      <div id="form" style={{ display: janelaUp ? "flex" : "none" }}>
+        <FaX className="iconForm" onClick={MudarDisplay}/>
+        <Form />
+      </div>
       <div className="centro">
         <Nav />
         <div className="bv-txt">
@@ -16,7 +28,11 @@ function App() {
             Deixe-nos transformar cada detalhe em uma obra de arte, garantindo
             beleza e bem-estar em cada toque. Você merece esse momento especial!
           </p>
-          <Button />
+          <Button
+            text={"AGENDAR"}
+            classS={"bt-agendar"}
+            onclick={MudarDisplay}
+          />
         </div>
         <div className="bt-bottom">
           <button className="bt-contato" type="button">
