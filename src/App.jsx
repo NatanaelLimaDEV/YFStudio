@@ -1,6 +1,5 @@
 import "./App.css";
 import Button from "./componentes/button";
-import ButtonHorario from "./componentes/button-dia";
 import Form from "./componentes/form";
 import Nav from "./componentes/nav";
 import React, { useState } from "react";
