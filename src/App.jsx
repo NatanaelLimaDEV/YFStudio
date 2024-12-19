@@ -2,12 +2,13 @@ import "./App.css";
 import Button from "./componentes/button";
 import Form from "./componentes/form";
 import Nav from "./componentes/nav";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaInstagram, FaRegMap, FaWhatsapp, FaX } from "react-icons/fa6";
 
 function App() {
   const [janelaUp, janelaDisplay] = useState(false);
+
   const MudarDisplay = () => {
     janelaDisplay(!janelaUp);
   };
