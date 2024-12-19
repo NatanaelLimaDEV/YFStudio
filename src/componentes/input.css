@@ -1,0 +1,19 @@
+.input-form {
+    all: unset;
+    padding: 20px;
+    border: 1px solid #ffb4b1;
+    border-radius: 10px;
+    color: #fff;
+    width: 330px;
+
+    font-family: "PT Sans Caption", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 15px;
+}
+
+@media screen and (min-width: 480px) {
+	.input-form {
+		width: 400px;
+	}
+}
