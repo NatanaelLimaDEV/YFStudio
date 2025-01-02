@@ -69,11 +69,23 @@ function Form() {
     const horariosOcupados = horariosOcupadosPorDia?.[dataFormatada] || [];
 
     const novoVerificaDia = {};
+    const horaAtual = dayjs();
 
     // biome-ignore lint/complexity/noForEach: <explanation>
     horarios.forEach((horario) => {
-      // Desabilita horário se estiver ocupado
-      if (horariosOcupados.includes(horario)) {
+      // Converte o horário para uma instância de Day.js no dia atual
+      const [horas, minutos] = horario
+        .split(":")
+        .map((t) => Number.parseInt(t, 10));
+      const horarioComparar = dayjs(dataV).hour(horas).minute(minutos);
+
+      // Desabilita horário se:
+      // 1. Já passou no dia atual (se for hoje) ou
+      // 2. Está ocupado
+      if (
+        horariosOcupados.includes(horario) ||
+        (dayjs(dataV).isSame(horaAtual, "day") && horarioComparar.isBefore(horaAtual))
+      ) {
         novoVerificaDia[horario] = true; // Desabilitado
       } else {
         // Lógica específica para cada tipo de dia
@@ -146,7 +158,6 @@ function Form() {
       }).showToast();
       return;
     }
-
 
     const mensagem = `Procedimento: ${procedimento}%0ANome: ${nome}%0AMúsica: ${musica}%0AData: ${valueData.format(
       "dddd, DD MMMM YYYY"
