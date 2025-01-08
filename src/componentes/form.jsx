@@ -18,6 +18,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Toastify from "toastify-js";
 import { useQuery } from "@tanstack/react-query";
 import { getListaAgendamentos } from "../http/get-lista-agendamentos";
+import { criarAgenda } from "../http/criar-agenda";
 
 dayjs.locale("pt-br");
 
@@ -158,6 +159,16 @@ function Form() {
       }).showToast();
       return;
     }
+
+    criarAgenda({
+      nome: nome,
+      email: 'email@email.com',
+      contato: '(00)00000-0000',
+      data: valueData,
+      hora: valueHr,
+      servico: procedimento,
+      musica: musica,
+    })
 
     const mensagem = `Procedimento: ${procedimento}%0ANome: ${nome}%0AMúsica: ${musica}%0AData: ${valueData.format(
       "dddd, DD MMMM YYYY"
