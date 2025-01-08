@@ -16,7 +16,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Toastify from "toastify-js";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getListaAgendamentos } from "../http/get-lista-agendamentos";
 import { criarAgenda } from "../http/criar-agenda";
 
@@ -36,10 +36,13 @@ function Form() {
     "17:30h": true,
   });
 
+  const queryClient = useQueryClient();
+
   const { data } = useQuery({
     queryKey: ["agenda"],
     queryFn: getListaAgendamentos,
-    staleTime: 1000 * 60,
+    staleTime: 0,
+    cacheTime: 0,
   });
 
   // Agrupar os agendamentos por data e verificar os horários ocupados
@@ -85,7 +88,8 @@ function Form() {
       // 2. Está ocupado
       if (
         horariosOcupados.includes(horario) ||
-        (dayjs(dataV).isSame(horaAtual, "day") && horarioComparar.isBefore(horaAtual))
+        (dayjs(dataV).isSame(horaAtual, "day") &&
+          horarioComparar.isBefore(horaAtual))
       ) {
         novoVerificaDia[horario] = true; // Desabilitado
       } else {
@@ -144,7 +148,15 @@ function Form() {
     MudarDisplay();
   };
 
-  const Enviar = () => {
+  const limparFormulario = () => {
+    setNome("");
+    setMusica("");
+    setProcedimento("");
+    setValueData(dayjs(date.toString())); // Reseta para a data atual
+    setValueHr("");
+  };
+
+  const Enviar = async () => {
     if (!procedimento || !nome || !musica || !valueData || !valueHr) {
       Toastify({
         text: "Por favor, preencha todos os campos antes de enviar.",
@@ -162,13 +174,13 @@ function Form() {
 
     criarAgenda({
       nome: nome,
-      email: 'email@email.com',
-      contato: '(00)00000-0000',
+      email: "email@email.com",
+      contato: "(00)00000-0000",
       data: valueData,
       hora: valueHr,
       servico: procedimento,
       musica: musica,
-    })
+    });
 
     const mensagem = `Procedimento: ${procedimento}%0ANome: ${nome}%0AMúsica: ${musica}%0AData: ${valueData.format(
       "dddd, DD MMMM YYYY"
@@ -178,6 +190,12 @@ function Form() {
     const url = `https://wa.me/${numeroTel}?text=${mensagem}`;
 
     window.open(url, "_blank");
+
+    await queryClient.invalidateQueries(["agenda"]);
+
+    VerificaDia(valueData);
+
+    limparFormulario();
   };
 
   const Ajuda = () => {
