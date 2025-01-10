@@ -23,6 +23,7 @@ function App() {
         <Nav />
         <div className="bv-txt">
           <h1>Bem-vinda ao nosso estúdio!</h1>
+          <h1>teste</h1>
           <p>
             Onde suas mãos recebem o cuidado e a elegância que merecem!
             Deixe-nos transformar cada detalhe em uma obra de arte, garantindo
