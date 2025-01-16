@@ -13,17 +13,20 @@ function App() {
     janelaDisplay(!janelaUp);
   };
 
+  const atalhoBt = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       <div id="form" style={{ display: janelaUp ? "flex" : "none" }}>
-        <FaX className="iconForm" onClick={MudarDisplay}/>
+        <FaX className="iconForm" onClick={MudarDisplay} />
         <Form />
       </div>
       <div className="centro">
         <Nav />
         <div className="bv-txt">
           <h1>Bem-vinda ao nosso estúdio!</h1>
-          <h1>teste</h1>
           <p>
             Onde suas mãos recebem o cuidado e a elegância que merecem!
             Deixe-nos transformar cada detalhe em uma obra de arte, garantindo
@@ -36,13 +39,13 @@ function App() {
           />
         </div>
         <div className="bt-bottom">
-          <button className="bt-contato" type="button">
+          <button className="bt-contato" type="button" onClick={() => atalhoBt("https://www.instagram.com/yasmimfreitas_studio?igsh=bW96dTR1MmRvbG5y")}>
             <FaInstagram className="icon" />
           </button>
-          <button className="bt-contato" type="button">
+          <button className="bt-contato" type="button" onClick={() => atalhoBt("https://wa.me/558898072612?text=Olá! Estou interessada nos procedimentos e gostaria de mais informações.")}>
             <FaWhatsapp className="icon" />
           </button>
-          <button className="bt-contato" type="button">
+          <button className="bt-contato" type="button" onClick={() => atalhoBt("https://maps.app.goo.gl/nx74S7AYVJuhBSvL9")}>
             <FaRegMap className="icon" />
           </button>
         </div>
