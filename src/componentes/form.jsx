@@ -33,7 +33,7 @@ function Form() {
   const [verificaDia, setVerificaDia] = useState({
     "08:30h": true,
     "13:30h": true,
-    "17:30h": true,
+    "18:30h": true,
   });
 
   const queryClient = useQueryClient();
@@ -67,7 +67,7 @@ function Form() {
     const dataFormatada = dayjs(dataV).format("YYYY-MM-DD");
 
     // Horários disponíveis
-    const horarios = ["08:30h", "13:30h", "17:30h"];
+    const horarios = ["08:30h", "13:30h", "18:30h"];
 
     // Horários ocupados para a data selecionada
     const horariosOcupados = horariosOcupadosPorDia?.[dataFormatada] || [];
@@ -98,10 +98,10 @@ function Form() {
           // Domingo: todos os horários ficam habilitados
           novoVerificaDia[horario] = false;
         } else if (fds >= 1 && fds <= 5) {
-          // Dias úteis: apenas 17:30h fica habilitado
-          novoVerificaDia[horario] = horario !== "17:30h";
+          // Dias úteis: apenas 18:30h fica habilitado
+          novoVerificaDia[horario] = horario !== "18:30h";
         } else if (fds === 6) {
-          // Sábado: apenas 13:30h e 17:30h ficam habilitados
+          // Sábado: apenas 13:30h e 18:30h ficam habilitados
           novoVerificaDia[horario] = horario === "08:30h";
         }
       }
@@ -307,10 +307,10 @@ function Form() {
                 disabled={verificaDia["13:30h"]}
               />
               <FormControlLabel
-                value="17:30h"
+                value="18:30h"
                 control={<Radio />}
-                label="17:30h"
-                disabled={verificaDia["17:30h"]}
+                label="18:30h"
+                disabled={verificaDia["18:30h"]}
               />
             </RadioGroup>
           </FormControl>
